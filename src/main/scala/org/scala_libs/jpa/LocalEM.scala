@@ -84,7 +84,7 @@ class LocalEMF(val unitName : String, val userTx : Boolean, properties : Option[
   private def unmap[A,B](input : Map[A,B]) : java.util.Map[A,B] = {
     val output = new java.util.HashMap[A,B]()
     
-    input.keys.foreach { key => output.put(key, input(key))}
+    input.keysIterator.foreach { key => output.put(key, input(key))}
     
     output
   }
