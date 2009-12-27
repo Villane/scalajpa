@@ -66,6 +66,7 @@
 
   <properties>
     <scala.version>2.7.5</scala.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <repositories>
@@ -170,6 +171,28 @@
             <id>attach-sources</id>
             <goals>
               <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>2.0.0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-RequiredExecutionEnvironment>J2SE-1.5, JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
+            <_versionpolicy>[$(@),$(version;=+;$(@)))</_versionpolicy>
+            <Export-Package>org.scala_libs.jpa.*;version="${project.version}"</Export-Package>
+          </instructions>
+        </configuration>
+        <executions>
+          <execution>
+            <id>create-bundle</id>
+            <phase>package</phase>
+            <goals>
+              <goal>bundle</goal>
             </goals>
           </execution>
         </executions>
